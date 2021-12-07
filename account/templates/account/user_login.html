@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{%load static %}
+{%block style%}
+   <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
+{%endblock%}
+
+{%block content%}
+{% include "navbar.html" %}
+{%if message%}
+        <div class="container col-3" style="background: rgba(245, 35, 35, 0.5); border-radius: 10px; margin-bottom:-3%;margin-top: 3%;">
+            <div style="text-align:  center;"><strong>{{message}}</strong></div>
+        </div>
+{%endif%}
+<form action="{% url 'account:login'%}" method="post" >
+    {% csrf_token %}
+    <div class="login">
+        <div class="row">
+            {%for field in form%}
+                <div class="col-11" style="color:white; margin-left: 15px;">
+                    <p>{{field.label}} :</p>
+                </div>
+                <div class="col-11 mb-3" style="color:white; margin-left: 15px;">
+                    {{field}}
+                </div>
+            {%endfor%}
+        </div>
+        <div class="col-12">
+            <input type="submit" class="form-control" style="background: #ffc107; border-radius: 10px;"
+                value="Войти" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <a href="{% url 'account:password_reset'%}", style="margin-left: 100px">Forgot you password?</a>
+    </div>
+</form>
+{%endblock%}
+

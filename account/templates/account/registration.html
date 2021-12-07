@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{%load static %}
+{%block style%}
+   <link rel="stylesheet" href="{% static 'css/account/registration.css' %}">
+{%endblock%}
+{%block content%}
+    {% include "navbar.html" %}
+
+
+        <div class="container col-3" style="background: rgba(245, 35, 35, 0.5); border-radius: 10px; margin-bottom:-7%;margin-top: 3%; ">
+             <strong>{{form.errors}}</strong>
+        </div>
+
+
+    <form action="{% url 'account:registration'%}" method="post" >
+        {% csrf_token %}
+        <div class="registration">
+            <div class="row">
+                    {%for field in form%}
+                        <div class="col-11" style="color:white; margin-left: 15px;">
+                            <p>{{field.label}} :</p>
+                        </div>
+                        <div class="col-11 mb-3" style="color:white; margin-left: 15px;">
+                            {{field}}
+                        </div>
+                    {%endfor%}
+            </div>
+            <div class="col-12">
+                <input type="submit" class="form-control" style="background: #ffc107; border-radius: 10px;"
+                value="Войти" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+        </div>
+
+    </form>
+{% endblock %}
