@@ -1,0 +1,49 @@
+{%load static %}
+<link rel="stylesheet" href="{% static 'css/navbar/navbar.css'%}">
+<link rel="stylesheet" href="{% static 'css/navbar/navbar-media.css'%}">
+<nav class="navbar navbar-expand-md navbar-dark mb-4" style="background: #212529;">
+            <a class="navbar-brand" href="#">
+               <img alt="Brand" class="img-responsive" style="background: white" width=160rem height=auto src="static/navbar_image/hsbc-logo-black-and-white.png">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <h4 style="color:white">Navigation</h4>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      {% if user.is_authenticated %}
+                          <a class="dropdown-item" href="{% url 'account:profile'%}">Profile</a>
+                      {% endif %}
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{% url 'catalog:product_list' %}">Main page</a>
+                    </div>
+                </li>
+
+
+              </ul>
+
+
+                <div class="container" id="store">
+                        <form class="form-inline my-2 my-lg-0" action="">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search" name="search">
+                            <button class="btn btn-warning my-2 my-sm-0" id="sub" type="submit">Искать</button>
+                        </form>
+                </div>
+
+                     {%if user.is_authenticated%}
+                         <a href="{% url 'account:profile'%}"><img alt="Main user image" id="main_img" src="{{user.main_image.url}}"></a>
+                     {%else%}
+                     <div class="btn-group" role="group" aria-label="Basic example">
+                          <a class="btn btn-warning" href="{% url 'account:registration'%}">Registration</a>
+                          <a class="btn btn-warning" style="white-space: nowrap" href="{% url 'account:login'%}">Log in</a>
+                    </div>
+                     {%endif%}
+                </div>
+
+        </nav>

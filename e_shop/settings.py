@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # My App
     'account.apps.AccountConfig',
+    'catalog.apps.CatalogConfig',
 
 
     # Library
