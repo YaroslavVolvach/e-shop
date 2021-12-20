@@ -54,10 +54,18 @@
                          <h1>{{ product.title }}</h1>
                          <p class="text-justify">{{ product.description}}</p>
                         <div class="row justify-content-between">
+                            {%if product.quantity > 0%}
+                                <form action="{% url 'cart:cart_add' product.id %}" method="POST">{% csrf_token %}
+                                     <div class="row ">
+                                        <div class="col"><button type="input" class="btn btn-dark" style="background: #212529">Add</button></div>
+                                        <div class="col-auto" style="margin-left: -30px">{% csrf_token %} {{ cart_product_form }}</div>
+                                    </div>
+                                </form>
+                            {%endif%}
 
                             <div class="col-auto">
                                 <button type="button" value="Previous Page" class="btn btn-dark pull-right" style="background: #212529 margin-left: 15px" onClick="window.history.back();return false;">
-                                    Назад
+                                    Back
                                 </button>
                             </div>
                         </div>

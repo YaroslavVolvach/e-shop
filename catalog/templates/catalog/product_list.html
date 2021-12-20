@@ -8,7 +8,6 @@
             <a href="{% url 'catalog:category_create'%}" class="btn btn-dark" style="background: #212529">Category Create</a>
         {%endif%}
         <h5>{{visit}}</h5>
-        <a href="/api" class="btn btn-dark" style="background: #212529">API</a>
         <div class="row">
                 <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 mt-3">
                     <div class="shadow">
@@ -59,9 +58,9 @@
                                   <h4 class="card-title">{{product.title}}</h4>
 
                                   <div class="row">
-                                      <div class="col-sm-6"><p>Цена:  <strong>{{product.price}} $</strong></p></div>
+                                      <div class="col-sm-11 col-md-7"><p><strong>Price: {{product.price}}$</strong></p></div>
                                           {% if product.quantity > 0%}
-                                              <div class="col"><p><strong>В наличии: {{product.quantity}}</strong></p></div>
+                                              <div class="col"><p><strong>In stock: {{product.quantity}}</strong></p></div>
                                           {% else %}
                                               <div><strong><p class="text-danger">Нет в наличии</p></strong></div>
                                           {% endif %}

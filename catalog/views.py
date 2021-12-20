@@ -3,6 +3,7 @@ from django.views.generic.list import ListView
 from .mixins import ProductCreateUpdateMixin
 from .models import Product, Category, Comment, Like
 from django.utils import timezone
+from cart.views import CartAddProductForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.cache import cache
 
@@ -71,7 +72,8 @@ def product_detail(request, product_id):
 
     context = {
         'product': product,
-        'comments': product.comments.all()
+        'comments': product.comments.all(),
+        'cart_product_form':  CartAddProductForm(choices=product.quantity + 1),
         }
 
     return render(request, 'catalog/product_detail.html', context)
